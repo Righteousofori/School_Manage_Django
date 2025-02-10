@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+<head>
+    <title>Dashboard</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/dashboard.css' %}">
+</head>
+<body>
+    <header>
+        <div>
+            <div class="logo">
+                <h1 class="company-name">
+                    <span>S</span>chool 
+                    <span>Management</span> System
+                </h1>
+            </div>
+        </div>
+    </header>
+    <div class="container">
+        <h2>Welcome to the School Management System</h2>
+        <p>Welcome, {{ user.username }}!</p>
+        <div class="links">
+            {% if user.profile.user_type == 'administrator' %}
+                <a href="{% url 'teacher_list' %}">Teachers</a>
+                <a href="{% url 'student_list' %}">Students</a>
+                <a href="{% url 'grade_list' %}">Grades</a>
+                <a href="{% url 'courses_list' %}">Courses</a>
+                <a href="{% url 'dashboard' %}">Dashboard</a>
+                <a href="{% url 'logout' %}">Logout</a>
+            {% elif user.profile.user_type == 'student' %}
+                <a href="{% url 'student_list' %}">Students</a>
+                <a href="{% url 'grade_list' %}">Grades</a>
+                <a href="{% url 'courses_list' %}">Courses</a>
+                <a href="{% url 'dashboard' %}">Dashboard</a>
+                <a href="{% url 'logout' %}">Logout</a>
+            {% elif user.profile.user_type == 'teacher' %}
+                <a href="{% url 'student_list' %}">Students</a>
+                <a href="{% url 'grade_list' %}">Grades</a>
+                <a href="{% url 'courses_list' %}">Courses</a>
+                <a href="{% url 'dashboard' %}">Dashboard</a>
+                <a href="{% url 'logout' %}">Logout</a>
+            {% endif %}
+        </div>
+    </div>
+    <footer>
+        <div class="footer-content">
+            <p>Contact us: schoolmanagementsystem@gmail.com </p>
+            <p>&copy; 2024 School Management System</p>
+        </div>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+<head>
+    <title>Register</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/login.css' %}">
+</head>
+<body>
+    <body>
+        <header>
+            <div>
+                <div class="logo">
+                    <h1 class="company-name">
+                        <span>S</span>chool 
+                        <span>Management</span>System
+                    </h1>
+                </div>
+            </div>
+        </header>
+    <div class="container">
+        <form method="POST">
+            <h2>Register</h2>
+            {% csrf_token %}
+            {% for field in form%}
+            <div>
+                <label for="{{ field.id_for_label}}">{{ field.label}}</label>
+                {{ field }}
+                {% if field.help_text %}
+                    <small style="display: none;">{{ field.help_text}}</small>
+                {% endif %}
+            </div>
+            {% endfor %}
+            <label for="user_type">User Type</label>
+            <select name="user_type" id="user_type">
+                <option value="admin">Administrator</option>
+                <option value="doctor">Teacher</option>
+                <option value="patient">Student</option>
+            </select>
+            <button type="submit">Register</button> 📚 <a href="{% url 'login' %}">Login</a>
+        </form>
+    </div>
+    <footer>
+        <div class="footer-content">
+            <p>Contact us: schoolmanagementsystem@gmail.com </p>
+            <p>&copy; 2024 School Management System</p>
+        </div>
+    </footer>
+</body>
+</html>

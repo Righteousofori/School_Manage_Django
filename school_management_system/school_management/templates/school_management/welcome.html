@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+<head>
+    <title>Welcome</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/welcome.css' %}">
+</head>
+<body>
+    <div class="container">
+    <h1>Welcome to the School Management System</h1>
+    <p>📚This is a school management system. We promate hard-working and excellence. 📚</p>
+    <p>Please login or register to continue...</p>
+    <a href="{% url 'login' %}">Login</a> <a href="{% url 'register' %}">Register</a>
+    <p>Contact us: schoolmanagementsystem@gmail.com </p>
+        <div class="footer-content">
+            <p>&copy; 2024 School Management System</p>
+        </div>
+    </div>
+</body>
+</html>

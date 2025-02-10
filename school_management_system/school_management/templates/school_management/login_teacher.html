@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+<head>
+    <title>Teacher Login</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'core/css/styles.css' %}">
+</head>
+<body>
+    <header>
+        <div>
+            <div class="logo">
+                <h1 class="company-name">
+                    <span>S</span>chool 
+                    <span>Management</span>System
+                </h1>
+            </div>
+        </div>
+    </header>
+    <div class="container">
+        <h2>Teacher Login</h2>
+        <form method="POST">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">Login</button>
+        </form>
+        <a href="{% url 'register' %}">Register</a>
+    </div>
+    <footer>
+        <div class="footer-content">
+            <p>Contact us: schoolmanagementsystem@gmail.com </p>
+            <p>&copy; 2024 School Management System</p>
+        </div>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+<head>
+    <title>Grade List</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/student_list.css' %}">
+</head>
+<body>
+    <header>
+        <div>
+            <div class="logo">
+                <h1 class="company-name">
+                    <span>S</span>chool 
+                    <span>Management</span> System
+                </h1>
+            </div>
+        </div>
+        <div class="links">
+            {% if user.profile.user_type == 'administrator' %}
+                <a href="{% url 'teacher_list' %}">Teachers</a>
+                <a href="{% url 'student_list' %}">Students</a>
+                <a href="{% url 'grade_list' %}">Grades</a>
+                <a href="{% url 'courses_list' %}">Courses</a>
+                <a href="{% url 'dashboard' %}">Dashboard</a>
+                <a href="{% url 'logout' %}">Logout</a>
+            {% elif user.profile.user_type == 'student' %}
+                <a href="{% url 'student_list' %}">Students</a>
+                <a href="{% url 'grade_list' %}">Grades</a>
+                <a href="{% url 'courses_list' %}">Courses</a>
+                <a href="{% url 'dashboard' %}">Dashboard</a>
+                <a href="{% url 'logout' %}">Logout</a>
+            {% elif user.profile.user_type == 'teacher' %}
+                <a href="{% url 'student_list' %}">Students</a>
+                <a href="{% url 'grade_list' %}">Grades</a>
+                <a href="{% url 'courses_list' %}">Courses</a>
+                <a href="{% url 'dashboard' %}">Dashboard</a>
+                <a href="{% url 'logout' %}">Logout</a>
+            {% endif %}
+        </div>
+    </header>
+    <h1>Grade</h1>
+    <a href="{% url 'add_grade' %}">Add new grade</a>
+    <table>
+        <tr>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Index Number</th>
+            <th>Enrollment Date</th>
+            <th>Subject</th>
+            <th>Grade</th>
+            <th>Actions</th>
+        </tr>
+        {% for student, grade in student_grades %}
+         <tr>
+            <td>{{ student.first_name }}</td>
+            <td>{{ student.last_name }}</td>
+            <td>{{ student.index_number }}</td>
+            <td>{{ student.enrollment_date }}</td>
+            <td>{{ grade.subject }}</td>
+            <td>{{ grade.grade }}</td>
+            <td>
+                <a href="{% url 'grade_update' pk=grade.pk %}">Update</a>
+                <a href="{% url 'delete_grade' pk=grade.pk %}">Delete</a>
+            </td>
+        </tr>
+        {% endfor %} 
+    </table>
+    <footer>
+        <div class="footer-content">
+            <p>Contact us: schoolmanagementsystem@gmail.com </p>
+            <p>&copy; 2024 School Management System</p>
+        </div>
+    </footer>
+</body>
+</html>
